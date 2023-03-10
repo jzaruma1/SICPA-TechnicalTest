@@ -1,0 +1,79 @@
+<div class="h-full flex flex-col overflow-hidden">
+    <div class="flex flex-col p-5">
+        <div fxLayout="row">
+            <div fxFlex="30" fxLayoutAlign="start center " class="font-bold text-2xl">
+                {{entityId? 'Edit ':'New '}}Department
+            </div>
+            <div fxFlex="auto" fxLayoutAlign="end center" fxLayoutGap="5px">
+                <button mat-raised-button ngClass.md="order-5" ngClass.xs="order-1" color="accent"
+                    [routerLink]="['/departments']">
+                    <mat-icon>keyboard_backspace</mat-icon><span>Back</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="flex-grow flex flex-col overflow-auto">
+        <div class="flex-grow overflow-auto relative">
+            <div class="w-full space-x-5">
+                <form [formGroup]="form" (ngSubmit)="save()">
+                    <div class="w-full mt-4 p-5 md:p-10">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <mat-form-field class="w-full tight-custom">
+                                    <mat-label>Name</mat-label>
+                                    <input autocomplete="off" matInput formControlName="name">
+                                    <mat-error *ngIf="form.controls.name.hasError('required')">
+                                        Field requiredo.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="w-full tight-custom">
+                                    <mat-label>Description</mat-label>
+                                    <input autocomplete="off" matInput formControlName="description">
+                                    <mat-error *ngIf="form.controls.description.hasError('required')">
+                                        Field requiredo.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="w-full tight-custom">
+                                    <mat-label>Phone</mat-label>
+                                    <input autocomplete="off" matInput formControlName="phone">
+                                    <mat-error *ngIf="form.controls.phone.hasError('required')">
+                                        Field requiredo.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="w-full tight-custom">
+                                    <mat-label>Enterprise</mat-label>
+                                    <mat-select formControlName="enterpriseId" placeholder="Select">
+                                        <mat-option [value]="option.id" *ngFor="let option of enterprises">
+                                            {{option.name}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error *ngIf="form.controls.enterpriseId.hasError('required')">
+                                        Field requiredo.
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div fxLayoutAlign="start center">
+                                <mat-slide-toggle class="example-margin" color="primary" formControlName="status">
+                                    Status
+                                </mat-slide-toggle>
+                            </div>
+                        </div>
+                    </div>
+                    <div fxLayout="row">
+                        <div fxFlex fxLayoutAlign="center center">
+                            <button mat-raised-button fxFlex="10" fxFlex.xs="40" color="primary">
+                                <mat-icon>save</mat-icon><span>Save</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

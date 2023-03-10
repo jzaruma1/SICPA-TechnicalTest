@@ -12,6 +12,7 @@ namespace Domain.Entities
         public string Phone { get; set; }
         [Required]
         public int EnterpriseId { get; set; }
+        public Enterprise Enterprise { get; set; }
         public ICollection<DepartmentEmployee> DepartmentEmployees { get; set; }
     }
 }

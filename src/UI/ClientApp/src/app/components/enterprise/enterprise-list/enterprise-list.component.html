@@ -1,0 +1,74 @@
+<div class="h-full flex flex-col overflow-hidden">
+    <div class="flex flex-col p-5">
+        <div fxLayout="row">
+            <div fxFlex="30" fxLayoutAlign="start center " class="font-bold text-2xl">
+                Enterprises
+            </div>
+            <div fxFlex="auto" fxLayoutAlign="end center">
+                <button mat-raised-button ngClass.md="order-5" ngClass.xs="order-1" color="primary"
+                    [routerLink]="['/enterprises','new']">
+                    <mat-icon>add</mat-icon><span>Add</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="flex-grow flex flex-col overflow-auto">
+        <div class="flex-grow overflow-auto relative">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 min-w-full w-fit">
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+                <ng-container matColumnDef="address">
+                    <th mat-header-cell *matHeaderCellDef> Address </th>
+                    <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+                </ng-container>
+                <ng-container matColumnDef="phone">
+                    <th mat-header-cell *matHeaderCellDef> Phone </th>
+                    <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+                </ng-container>
+                <ng-container matColumnDef="departments">
+                    <th mat-header-cell *matHeaderCellDef> Departments </th>
+                    <td mat-cell *matCellDef="let element">
+                        <button mat-raised-button [matTooltip]="getTooltip(element)">
+                            <span>
+                                {{getTooltipCount(element)}}
+                            </span>
+                        </button>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Status </th>
+                    <td mat-cell *matCellDef="let element">
+                        <span [matTooltip]="element.status?'Enabled':'Disabled'">
+                            <mat-icon *ngIf="element.status else noCheck" color="primary">check_circle</mat-icon>
+                        </span>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="option">
+                    <th mat-header-cell *matHeaderCellDef> Opcion </th>
+                    <td mat-cell *matCellDef="let element">
+                        <span class="cursor-pointer" [routerLink]="['/enterprises','edit', element.id]">
+                            <mat-icon color="primary">edit</mat-icon>
+                        </span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <!-- <div *ngIf="dataSource?.isLoading" class="loading-shade">
+          <mat-spinner color="accent"></mat-spinner>
+        </div> -->
+        </div>
+        <mat-divider></mat-divider>
+        <mat-paginator [length]="records" [pageSizeOptions]="[10, 50, 100]" aria-label="Select page">
+        </mat-paginator>
+    </div>
+</div>
+
+<ng-template #noCheck>
+    <mat-icon>highlight_off</mat-icon>
+</ng-template>

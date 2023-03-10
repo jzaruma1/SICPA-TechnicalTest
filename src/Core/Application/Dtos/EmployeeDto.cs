@@ -7,5 +7,7 @@
         public string Name { get; set; }
         public string Position { get; set; }
         public string Surname { get; set; }
+        public string DepartmentNames { get; set; }
+        public List<int> Departments { get; set; }
     }
 }

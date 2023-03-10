@@ -1,0 +1,30 @@
+<div class="h-full flex flex-col">
+    <mat-toolbar class="mat-elevation-z3" color="primary">
+        <button mat-icon-button (click)="snav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <div class="flex-grow pl-5">
+            <h1 class="font-bold text-sm md:text-lg lg:text-3xl">Manage Company</h1>
+        </div>
+    </mat-toolbar>
+    <mat-sidenav-container class="flex-grow h-1">
+        <mat-sidenav mode="side" [opened]="true" #snav class="w-80 p-3">
+            <mat-selection-list #shoes [multiple]="false">
+                <mat-list-option *ngFor="let menu of menuList">
+                    <div fxLayoutAlign="start center">
+                        <mat-icon>{{menu.iconId}}</mat-icon>
+                        <a mat-list-item [routerLink]="[menu.url]" routerLinkActive="active"
+                            [routerLinkActiveOptions]="{exact:true}">
+                        <span class="font-medium" mat-line> {{menu.title}}</span>
+                    </a>
+                    </div>
+                </mat-list-option>
+            </mat-selection-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <main class="h-full">
+                <router-outlet></router-outlet>
+            </main>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

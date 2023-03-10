@@ -29,6 +29,11 @@ namespace Persistence.Repositories
             return await _context.Employees.Where(x => x.Id == id).ProjectTo<EmployeeDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
         }
 
+        public async Task<Employee> GetEntity(int id)
+        {
+            return await _context.Employees.Where(x => x.Id == id).SingleOrDefaultAsync();
+        }
+
         public async Task<bool> Insert(EmployeeDto employee)
         {
             var entity = _mapper.Map<EmployeeDto, Employee>(employee);

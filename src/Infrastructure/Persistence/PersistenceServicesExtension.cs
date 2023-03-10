@@ -14,6 +14,7 @@ namespace Persistence
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<IEnterpriseRepository, EnterpriseRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IDepartmentEmployeeRepository, DepartmentEmployeeRepository>();
             var defaultConnectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContextPool<DataContext>(
                   dbContextOptions => dbContextOptions

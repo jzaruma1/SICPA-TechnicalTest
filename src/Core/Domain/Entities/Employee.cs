@@ -14,7 +14,7 @@ namespace Domain.Entities
         public string Position { get; set; }
         [Required, MaxLength(100)]
         public string Surname { get; set; }
-        public ICollection<DepartmentEmployee> DepartmentEmployees { get; set; }
+        public List<DepartmentEmployee> DepartmentEmployees { get; set; }
 
     }
 }

@@ -18,10 +18,12 @@ namespace Persistence.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Enterprise>(e =>
-            {
-                e.HasMany(x => x.Departments).WithOne().HasForeignKey(x => x.EnterpriseId);
-            });
+            modelBuilder.Entity<Department>()
+                .HasOne(p => p.Enterprise)
+                .WithMany(b => b.Departments);
+
+            modelBuilder.Entity<Employee>()
+    .HasMany(p => p.DepartmentEmployees);
 
             modelBuilder.Entity<DepartmentEmployee>()
                 .HasOne(de => de.Department)
@@ -42,9 +44,13 @@ namespace Persistence.Context
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedDate = DateTime.UtcNow;
+                        entry.Entity.CreatedBy = "user-admin-create";
+                        entry.Entity.ModifiedDate = DateTime.UtcNow;
+                        entry.Entity.ModifiedBy = "user-admin-create";
                         break;
                     case EntityState.Modified:
                         entry.Entity.ModifiedDate = DateTime.UtcNow;
+                        entry.Entity.ModifiedBy = "user-admin-edit";
                         break;
                 }
             }

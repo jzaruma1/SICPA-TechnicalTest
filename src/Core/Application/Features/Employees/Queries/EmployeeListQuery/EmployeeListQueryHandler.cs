@@ -16,8 +16,8 @@ namespace Application.Features.Employees.Queries.EmployeeListQuery
 
         public async Task<PagedResponseDto<EmployeeDto>> Handle(EmployeeListQuery request, CancellationToken cancellationToken)
         {
-            var enterprises = await _employeeRepository.GetAll();
-            return await enterprises.GetPagedAsync(request.parameter.PageNumber, request.parameter.PageSize);
+            var employees = await _employeeRepository.GetAll();
+            return await employees.GetPagedAsync(request.parameter.PageNumber, request.parameter.PageSize);
         }
     }
 }

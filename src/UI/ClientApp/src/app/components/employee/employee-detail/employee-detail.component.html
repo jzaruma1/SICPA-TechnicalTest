@@ -39,9 +39,12 @@
                             <div>
                                 <mat-form-field class="w-full tight-custom">
                                     <mat-label>Email</mat-label>
-                                    <input autocomplete="off" matInput formControlName="email">
+                                    <input autocomplete="off" type="email" matInput formControlName="email">
                                     <mat-error *ngIf="form.controls.email.hasError('required')">
                                         Field requiredo.
+                                    </mat-error>
+                                    <mat-error *ngIf="form.controls.email.hasError('email')">
+                                        Incorrect format
                                     </mat-error>
                                 </mat-form-field>
                             </div>

@@ -2,6 +2,9 @@ using Application;
 using Application.Middlewares;
 using Persistence;
 using Microsoft.Extensions.FileProviders;
+using WebApi;
+using Microsoft.EntityFrameworkCore.Design;
+using Persistence.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 var corsOrigin = "corsOrigin";
@@ -16,13 +19,7 @@ builder.Services.AddCors(options =>
                           });
 });
 
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .AddEnvironmentVariables()
-    .AddCommandLine(args)
-    .AddJsonFile("appsettings.json")
-    .AddUserSecrets<Program>(true)
-    .Build();
-builder.Services.AddPersistenceServices(configuration);
+builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
 
 builder.Services.AddControllers();

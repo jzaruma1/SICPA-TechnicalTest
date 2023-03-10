@@ -10,7 +10,7 @@ export class EnterpriseService {
   constructor(private http: HttpClient) { }
 
   getAll(size: number = 10, page: number = 1) {
-    return this.http.get(`${environment.apiUrl}enterprise?size=${size}&page=${page}`);
+    return this.http.get(`${environment.apiUrl}enterprises?size=${size}&page=${page}`);
   }
 
   get(id: string) {

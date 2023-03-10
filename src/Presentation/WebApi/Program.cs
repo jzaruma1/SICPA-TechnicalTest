@@ -1,4 +1,5 @@
 using Application;
+using Application.Middlewares;
 using Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 var app = builder.Build();
-
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseCors(builder => builder
 .AllowAnyHeader()
 .AllowAnyMethod()

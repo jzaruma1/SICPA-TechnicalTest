@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -20,6 +21,9 @@ const routes: Routes = [
         loadChildren: () => import("./components/enterprise/enterprise.module").then(x => x.EnterpriseModule)
       }
     ]
+  },
+  {
+    path: "**", component: NotFoundComponent, pathMatch: "full"
   }
 ];
 

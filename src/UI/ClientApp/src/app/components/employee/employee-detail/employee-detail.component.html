@@ -57,7 +57,7 @@
                             <div>
                                 <mat-form-field class="w-full tight-custom">
                                     <mat-label>Age</mat-label>
-                                    <input autocomplete="off" matInput formControlName="age">
+                                    <input autocomplete="off" type="number" matInput formControlName="age">
                                     <mat-error *ngIf="form.controls.age.hasError('required')">
                                         Field requiredo.
                                     </mat-error>

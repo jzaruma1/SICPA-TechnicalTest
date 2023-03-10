@@ -10,18 +10,18 @@ export class EnterpriseService {
   constructor(private http: HttpClient) { }
 
   getAll(size: number = 10, page: number = 1) {
-    return this.http.get(`${environment.apiUrl}enterprises?size=${size}&page=${page}`);
+    return this.http.get(`api/enterprise?size=${size}&page=${page}`);
   }
 
   get(id: string) {
-    return this.http.get(`${environment.apiUrl}enterprise/${id}`);
+    return this.http.get(`api/enterprise/${id}`);
   }
 
   add(entity: any) {
-    return this.http.post(`${environment.apiUrl}enterprise`, entity);
+    return this.http.post(`api/enterprise`, entity);
   }
 
   update(entity: any, id: number) {
-    return this.http.put(`${environment.apiUrl}enterprise/${id}`, entity);
+    return this.http.put(`api/enterprise/${id}`, entity);
   }
 }
